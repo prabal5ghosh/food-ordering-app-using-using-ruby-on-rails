@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  food_name: MyString
+  price: 1.5
+  veg_food: false
+  category_id: 
+  restaurant_id: 
+
+two:
+  food_name: MyString
+  price: 1.5
+  veg_food: false
+  category_id: 
+  restaurant_id: 

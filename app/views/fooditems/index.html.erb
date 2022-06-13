@@ -1,0 +1,30 @@
+<main class="FoodPagemainPageMain">
+  <div style="display:flex;">
+    <div style="margin:30px;">
+      <div  style="text-align: center; background-color:#fdf628; width:400px;align-content: center; padding: 10px;" >
+        <% if @restaurant %>
+          <p style="background-color:#41ed46; color:red;">Resturant name:  <strong> <%= @restaurant.restaurant_name %> </strong></p>
+          <p style=" color:red;">Resturant ID:  <strong> <%= @restaurant.id %> </strong></p>
+        <% else %>
+          <h1> all food items </h1>
+        <% end %>
+        <%= render partial: "fooditem1", collection: @fooditems, as: :d %>
+        <br>
+        <div>
+          <% if @restaurant %>  
+            <%= link_to "new fooditem", new_restaurant_fooditem_path %>
+            <%= button_to "back", "/restaurants/#{@restaurant.id}" , method: "get" , style:"color:#ff00de ;font-weight: bold;background-color: #00ffbb;margin-left:300px;", class:"btn btn-warning"%> 
+          <% else %>
+            <%= link_to "new fooditem", new_fooditem_path %>
+          <% end %>
+        </div>                
+      </div>
+      <div>
+        <%= render partial: "form2-section" %>
+      </div>
+    </div>
+    <div>
+        <%= render partial: "fooditem-section" %>
+    </div>
+  </div>
+ </main>

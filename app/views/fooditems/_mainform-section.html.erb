@@ -1,0 +1,24 @@
+<%= form_with(model: [@restaurant, @fooditem], local: true) do |f| %>
+  <div class="card" style="width:500px;">
+      <div class="card-body">
+          <%= f.hidden_field :restaurant_id , :value=>params[:restaurant_id] %>
+          <div class="mb-3">
+            <%= f.label :food_name, { class: "form-label"} %>
+            <%= f.text_field :food_name, { class: "form-control", placeholder: "Food Name" } %>
+          </div>
+          <div class="mb-3">
+            <%= f.label :price, { class: "form-label"} %>
+            <%= f.number_field :price, { class: "form-control", placeholder: "price" } %>
+          </div>
+          <div class="mb-3">
+            <p Class="FormInput-label-1">Veg or NonVeg Food Item:</p> 
+          <%= form.select :veg_food, [["Veg Food Item", true], ["Non Veg Food Item", false]] %>
+          </div>   
+          <div class="mb-3">
+            <p Class="FormInput-label-1">Category of Food Item:</p> 
+            <%= form.select :category_id, [["Bengali", 1], ["North Indian", 2], ["South Indian", 3], ["Russian", 4]] %>                   
+          </div>  
+          <%= f.submit "Submit", class: "btn btn-primary" %>
+       </div>
+    </div>
+<% end %>

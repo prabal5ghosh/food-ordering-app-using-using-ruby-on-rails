@@ -1,0 +1,190 @@
+.ResturantPageMain{ 
+    display: flex;
+    /* margin-bottom: 0px; */
+    } 
+
+.ResturantPage-title{
+    font-size: 30px;
+    line-height: 1.6;
+    color:rgb(102, 48, 249);
+    margin-top: 50px;
+    margin-left: 50px;
+    /* margin-bottom: 10px; */
+    background: rgb(152, 242, 193);
+    height: 50px;
+    
+    }
+ 
+    .article1{
+        /* background-color: rgb(253, 52, 12); */
+        margin-top: 50px;
+        margin-left: 10px;
+        margin-bottom:0px ;
+        font-size: 20px;
+
+    }
+    /* .div_form{
+        background-color: antiquewhite;
+        margin-left: 10px;
+        
+    } */
+    /* #veg_restaurant{
+        margin-left: 10px;
+        background-color: rgb(252, 252, 252);
+    } */
+
+
+    .AddResturant{
+        /* display: flex; */
+        height: 32px;
+        align-items: stretch;
+        margin-bottom: 20px;
+        /* margin-left: 10px;    */
+        background-color: antiquewhite;
+    }
+    .Form-section1{
+        margin-bottom: 0px;
+        /* margin-left: 10px; */
+        display: flex;
+        font-size: 20px;
+        background-color: antiquewhite;
+    }
+    #veg_restaurant{
+        margin-left: 0px;
+    }
+    .flex1{
+        display: flex;
+        flex-direction: row;
+        font-size: 20px;
+        text-align: center;
+        background-color: antiquewhite;
+    }
+    .flex2{
+        display: flex;
+        flex-direction: row;
+        font-size: 20px;
+        text-align: center;
+        background-color: antiquewhite;
+    }
+    .flex3{
+        /* display: flex; */
+        /* flex-direction: row; */
+        /* font-size: 20px; */
+        text-align: center;
+        background-color: antiquewhite;
+    }
+    .AddResturant-name{
+        padding: 6px 12px;
+        font-size: 14px;
+        color: rgb(56, 44, 44);
+        margin-right: 10px;
+        border-radius: 4px;
+        border: 1px solid #BFB8CC;
+    
+    }
+    .AddResturant-adderss{
+        padding: 6px 12px;
+        font-size: 14px;
+        color: rgb(56, 44, 44);
+        margin-right: 10px;
+        border-radius: 4px;
+        border: 1px solid #BFB8CC;
+
+    }
+    .AddResturant-time_open{
+    
+        padding: 6px;
+        font-size: 14px;
+        color: rgb(56, 44, 44);
+        margin-right: 100px;
+        margin-left: 10px;
+        border-radius: 4px;
+        border: 1px solid #BFB8CC; 
+    
+    }
+    .AddResturant-time_close{
+        padding: 6px;
+        font-size: 14px;
+        color: rgb(56, 44, 44);
+        margin-right: 10px;
+        margin-left: 10px;
+        border-radius: 4px;
+        border: 1px solid #BFB8CC; 
+    }
+    
+    .AddRestaurant-button{
+    
+        padding: 6px 22px;
+        font-size: 20px;
+        color: rgb(255, 110, 110);
+        background-color: rgb(38, 236, 209);
+        margin-right: 10px;
+        border-radius: 4px;
+        border: 1px solid transparent;
+    }
+
+
+
+    .FormInput-label-1{
+        font-size: 20px;
+    }
+
+.TodoSection{
+    margin-top: 200px;
+    color: red;
+    font-size: 20px;
+    background-color: yellow;
+}
+
+.table_restaurant{
+margin-top: 50px;
+background-color: aquamarine;
+}
+/* .table-head{
+    margin-top: 600px;
+} */
+
+#restaurant_id{
+    margin-top: 300px;
+    background-color: rgb(255, 127, 251);
+    font-size: 30px;
+    color: yellow;
+    font-style: oblique;
+}
+tr:nth-child(even) {
+    background-color: #D6EEEE;
+  }
+
+
+  TodoItem-delete > img {
+    width: 14px;
+    height:14px;
+}
+
+/* We can use class or id for css  */
+
+/* .TodoItem-delete-image
+{
+    width: 14px ;
+    height: 16px;
+
+} */
+
+#TodoItem-delete-image
+{
+    width: 20px ;
+    height: 20px;
+
+}
+
+/* width=10px  height=10px */
+.TodoItem-delete{
+    visibility: hidden;
+    margin-left: 8px;
+
+    
+}
+
+.TodoItem-container:hover .TodoItem-delete{
+    visibility: visible;
+}

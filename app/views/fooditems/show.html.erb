@@ -1,0 +1,81 @@
+<h1 style="text-align: center; color: #aaf079; padding-top:30px;"> fooditem:-  <%= @fooditem.food_name %> </h1>
+<%= render partial: "fooditem1", locals: {d: @fooditem} %>
+<%= button_to "back", restaurant_fooditems_path , method: "get" , style:"color:#ff00de ;font-weight: bold;background-color: #00ffbb;margin-left:140px;", class:"btn btn-warning"%> 
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+  </head>
+  <body>
+    <div style="display: flex;">
+          <div>
+            <div  style="text-align: center; background-color:#f0efd3; width:300px;align-content: center; padding: 10px; margin-right:20px" >
+              <p class="bg-success"><strong> fooditem name: </strong> <%= @fooditem.food_name %> </p>
+              <p><strong> fooditem ID: </strong> <%= @fooditem.id %> </p>
+              <p><strong> veg or non veg food: </strong>   
+                  <% if @fooditem.veg_food == true  %>
+                                  Veg
+                  <% else %>
+                                  NonVeg 
+                  <% end %></p>
+              <p><strong> Fooditem id: </strong><%= @fooditem.id %></p>
+              <div style=";">
+                  <%= button_to "back to all FOODITEM LIST", restaurant_fooditems_path , method: "get" , style:"color:#ff00de ;font-weight: bold;background-color: #00ffbb;margin-left:40px; margin-bottom:20px;", class:"btn btn-warning"%> 
+                  <%= button_to "back to all restaurant list", restaurants_path , method: "get" , style:"color:#ff00de ;font-weight: bold;background-color: #efb8b8; margin-left:40px;", class:"btn btn-warning"%> 
+              </div>
+            </div>
+          </div>  
+          <div  style="text-align: center; background-color:#fdf628; width:400px;align-content: center; padding: 10px; width:300px; height:150px" >        
+              <p style="background-color:#41ed46; color:red;">Resturant name:  <strong> <%= Restaurant.find_by(id: (Fooditem.find(@fooditem.id).restaurant_id)).restaurant_name %> </strong></p>
+              <p style=" color:red;">Resturant ID:  <strong> <%= Restaurant.find_by(id: (Fooditem.find(@fooditem.id).restaurant_id)).id%> </strong></p>
+              <%= button_to "back to all restaurant list", restaurants_path , method: "get" , style:"color:#ff00de ;font-weight: bold;background-color: #efb8b8; margin-left:30px;", class:"btn btn-warning"%> 
+              <%= render partial: "fooditem1", collection: @fooditems, as: :d %>
+              <br>   
+          </div>   
+    </div>
+    <div class="container mt-3" >
+      <table class="table table-dark table-striped" style="margin-top: 120px; border-color:#00f6da;">
+        <thead>
+          <tr>
+            <th class="bg-success"> <strong> fooditem name: </strong> </th>
+            <th class="bg-info"> <strong> Price: </strong></th>
+            <th class="bg-warning"> <strong> veg or non veg Food: </strong> </th>
+            <th class="p-3 mb-2 bg-secondary text-white">category name </th>
+            <th> restaurant name</th>
+            <th class="bg-success"> edit</th>
+            <th class="p-3 mb-2 bg-danger text-white">delete </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="text-center"> <%= @fooditem.food_name %> </td>
+            <td class="text-center"> <%= @fooditem.price %> </td>
+            <td class="text-center"> 
+              <% if @fooditem.veg_food == true  %>
+                  Veg
+              <% else %>
+                  NonVeg 
+              <% end %>
+            </td>    
+            <td class="border border-light"> 
+              <%= Category.find_by(id: (Fooditem.find(@fooditem.id).category_id)).catagory_name  %>
+            </td>
+            <td class="border border-warning"> 
+              <%= Restaurant.find_by(id: (Fooditem.find(@fooditem.id).restaurant_id)).restaurant_name %>
+            </td>
+            <td class="border border-primary">  
+              <%= link_to 'Edit', edit_restaurant_fooditem_path(@fooditem.restaurant_id) %>  
+            </td>
+            <td class="border border-danger">
+              <%= button_to "Delete", restaurant_fooditem_path(@fooditem.restaurant_id), method: 'delete' %>
+            </td>
+          </tr>      
+        </tbody>
+      </table>
+      </div>
+  </body>
+</html>

@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  restaurant_name: MyString
+  address: MyString
+  opening_time: 2022-05-17 09:53:19
+  closing_time: 2022-05-17 09:53:19
+  veg_restaurant: false
+  user_id: 
+
+two:
+  restaurant_name: MyString
+  address: MyString
+  opening_time: 2022-05-17 09:53:19
+  closing_time: 2022-05-17 09:53:19
+  veg_restaurant: false
+  user_id: 

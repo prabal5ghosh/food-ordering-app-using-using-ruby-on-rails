@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <title>FoodApp</title>
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <%= csrf_meta_tags %>
+      <%= csp_meta_tag %>
+      <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+      <%= javascript_importmap_tags %>
+    </head>
+    <body>
+      <div class="bg-image" 
+        style="background-image: url('https://media.istockphoto.com/photos/modern-restaurant-interior-design-picture-id1211547141?k=20&m=1211547141&s=612x612&w=0&h=KiZX3NBZVCK4MlSh4BJ8hZNSJcTIMbNSSV2yusw2NmM=');
+          background-repeat: no-repeat;background-size: cover;      height: 100vh;">
+        <% if @current_user %>
+          <div style="position: absolute; top: 8px; right: 10px; background-color:#67f270;padding:3px">
+            <p class="UserHeader_topright">  User name: <strong style="color:red;"> <%= @current_user.full_name %> </strong>   </p>
+            <p> User-id : <strong style="color:#d120f2;"> <%= @current_user.id %>  </strong> </p>  
+            <%= button_to "Sign-out", destroy_session_path , method: "delete",class:"btn btn-warning" , style:"color:blue;font-weight: bold;"%>     
+          </div>
+        <% end %> 
+        <% if flash[:error] %>
+          <p class="Flash-error" style="color: red; padding: 20px;"><%= flash[:error] %></p>
+        <% end %>
+        <%= yield %>
+      </div>
+    </body>
+</html>

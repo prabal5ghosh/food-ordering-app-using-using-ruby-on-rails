@@ -1,0 +1,41 @@
+<main class="ResturantPageMain">
+    <div style="padding-top:50px;">
+        <h1 class="ResturantPage-title" style="color: #5bf1ce;background-color: #e700ff; width:350px;margin-left:10px;">Add Restaurant</h1>
+        <article class="article1" >
+            <div style="display:flex;margin-left:10px;">
+                <%= form_with model: @restaurant do |form| %>            
+                    <div class="card" style="width:500px; background-color:lightblue;">
+                        <div style="margin:10px;">
+                            <div>
+                            <%= form.select :veg_restaurant, [["Veg Restaurant", true], ["Non Veg Restaurant", false]] %>
+                            </div>
+                            <div class="flex1">
+                                <p>Restaurant Name: </p>
+                                    <%= form.text_field :restaurant_name  %>
+                                <p> Restaurant Address: </p>
+                                    <%= form.text_field :address  %>
+                            </div>
+                            <div class="flex2">
+                                <p> Opening time </p>
+                                    <%= form.time_field :opening_time  %>
+                                <p> closing time </p>
+                                    <%= form.time_field :closing_time  %>
+                            </div> 
+                            <div class="Form-section">
+                                <%= form.submit "Add", class: "AddRestaurant-button" %>
+                            </div>                 
+                            <div style="display: flex; margin-top:20px;">
+                                <%= button_to "ADD", restaurants_path , method: "post" , style:"color:#ff00de ;font-weight: bold;background-color: #00ffbb;margin-left:140px;", class:"btn btn-warning"%> 
+                            </div>  
+                        </div>
+                    </div>
+                <% end %>
+            </div>
+        </article>
+    </div>
+</main>
+
+
+
+
+

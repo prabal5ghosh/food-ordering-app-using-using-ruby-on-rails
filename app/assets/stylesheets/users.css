@@ -1,0 +1,56 @@
+.NewUser-title {
+    margin-bottom: 40px;
+    font-size: 50px;
+    color:rgb(166, 0, 255);
+    /* font-size: 30px; */
+    margin-left: 200px;
+    background-color: rgb(189 253 236);
+     opacity:0.7;
+     margin-right: 550px;
+  }
+  
+  .Form-section {
+    margin-bottom: 30px;
+  }
+  
+  .Form-input { 
+    font-size: 20px;
+    padding: 8px;
+    margin-left: 400px;
+  }
+  
+  .FormInput-label {
+    color: rgb(33, 251, 0);
+    margin-bottom: 8px;
+    margin-left: 200px;
+    font-size: 40px;
+  }
+  
+  .Form-submit {
+    margin-left: 200px;
+    font-size: 40px;
+    padding: 20px;
+    background-color: #00f39620;
+    border: 5px;
+    border-radius: 4px;
+    color: rgb(255, 0, 47);
+    border-color: blue;
+  }
+  #role_type{
+    color: rgb(29, 0, 251);
+    margin-bottom: 8px;
+    margin-left: 400px;
+    font-size: 40px;
+  }
+  /* label{
+      color: YELLOW;
+      margin-bottom: 8px;
+      margin-left: 50px;
+      font-size: 40px;
+  } */
+
+  .UserNew{
+      /* background-color: rgb(247, 168, 168); */
+    margin-left: 350px;
+    margin-right: 400px;
+  }

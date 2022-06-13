@@ -1,0 +1,104 @@
+/* CSS FILE FOR VIEWS => TODO FOLDER => ALL ERB FILES */
+
+
+
+
+.TodoSectionTitle{
+    display: flex;
+    color: black;
+    align-items: center;
+    margin-bottom: 8px;
+}
+.TodoSectionTitle-text{
+    font-size: 14px;
+    font-weight: 600;
+    margin-right: 8px;
+    line-height: 1.4;
+}
+.TodoSectionTitle-remaningCount{
+    font-size: 12px;
+    color: rgb(255, 3, 70);
+    background-color: rgb(135, 220, 235);
+}
+ol,ul{
+    list-style:none;
+}
+.TodoItem{
+    font-size: 14px;
+    margin-left: 8px;
+    margin-bottom: 6px;
+    color: black;
+}
+.TodoItem-container{
+    /* display: inline-flex; */
+    display: flex;
+    padding: 2px 8px;
+    align-items: center;
+}
+
+.TodoItem-checkbox{
+    width: 16px;
+    height: 16px;
+
+}
+.TodoItem-overdueabel{
+    margin-left: 10px;
+    color: red;
+    font-size: 12px;
+    display: inline;
+}
+.TodoItem-container:hover{
+    background-color: rgb(215, 211, 211);
+}
+  
+.TodoItem-delete > img {
+    width: 14px;
+    height:14px;
+}
+
+/* We can use class or id for css  */
+
+/* .TodoItem-delete-image
+{
+    width: 14px ;
+    height: 16px;
+
+} */
+
+#TodoItem-delete-image
+{
+    width: 20px ;
+    height: 20px;
+
+}
+
+/* width=10px  height=10px */
+.TodoItem-delete{
+    visibility: hidden;
+    margin-left: 8px;
+
+    
+}
+
+.TodoItem-container:hover .TodoItem-delete{
+    visibility: visible;
+}
+.todoItem-duedate{
+    color: rgb(4, 4, 48);
+    font-size: 10px;
+    margin-left: 10px;
+}
+
+.todoItem-completedText{
+    color: blue;
+}
+
+
+/* 
+<a class="TodoItem-delete"  href="javascript:void(0)">
+<%= form_with(url: "/todos/#{todo.id}", method: "delete") do %> 
+    <input id="TodoItem-delete-image" type="image"   <%= image_tag "download.png" %>  >
+
+<% end %> */
+
+/* <input id="TodoItem-delete-image" type="image"  src="download.png" > */
