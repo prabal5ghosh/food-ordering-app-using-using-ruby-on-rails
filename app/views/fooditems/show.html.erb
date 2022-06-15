@@ -71,11 +71,24 @@
               <%= link_to 'Edit', edit_restaurant_fooditem_path(@fooditem.restaurant_id) %>  
             </td>
             <td class="border border-danger">
+            <% if current_user.role_id ==2 %>
               <%= button_to "Delete", restaurant_fooditem_path(@fooditem.restaurant_id), method: 'delete' %>
+            <% elsif current_user.role_id ==4 %>
+          <%#>    <%= button_to "Delete", user_restaurant_fooditems_path, method: 'delete' %>
+                 <a class="TodoItem-delete"  href="javascript:void(0)">
+                  <%= form_with(url: "/users/#{@fooditem.restaurant_id}/restaurants/#{@fooditem.restaurant_id}/fooditems/#{@fooditem.id}", method: "delete") do %>                               
+                    <button class="btn btn-danger" type="submit">Delete</button>
+                  <% end %>
+                </a>
+            <% end %>
             </td>
+           
           </tr>      
         </tbody>
       </table>
       </div>
+      <div class="text-center">
+        <p> <strong> <%= link_to 'Back', :back %> </strong> <p>
+      <div>
   </body>
 </html>

@@ -11,5 +11,10 @@ Rails.application.routes.draw do
   resources :restaurants do 
     resources :fooditems
   end
+  resources :users do 
+    resources :restaurants do
+      resources :fooditems
+    end
+  end
 
 end

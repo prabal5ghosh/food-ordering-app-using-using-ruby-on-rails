@@ -31,6 +31,7 @@ class FooditemsController < ApplicationController
         if @fooditem.save
             redirect_to restaurant_fooditems_path
         else
+            flash[:error]= @fooditem.errors.full_messages.join(", ")
             render :new
         end
     end
@@ -60,7 +61,14 @@ class FooditemsController < ApplicationController
     def destroy
         @restaurant = Restaurant.find_by(id: params[:restaurant_id])
         @fooditem.destroy
-        redirect_to restaurant_fooditems_url
+        if current_user.role_id == 2
+            redirect_to restaurant_fooditems_url
+        elsif current_user.role_id == 4         
+            redirect_to user_restaurant_fooditems_path
+        else
+            
+        end
+    
     end
 
     private

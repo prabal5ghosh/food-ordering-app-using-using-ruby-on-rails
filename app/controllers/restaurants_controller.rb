@@ -1,5 +1,6 @@
 class RestaurantsController <ApplicationController
     skip_before_action :ensure_user_logged_in
+    skip_before_action :verify_authenticity_token
 
     def new
         @restaurant = Restaurant.new
@@ -7,15 +8,33 @@ class RestaurantsController <ApplicationController
     end
 
     def index
-        @restaurants=Restaurant.where(user_id: current_user.id)
-        @restaurant = Restaurant.new
-        render "index"
+        if current_user.role_id ==4
+            # @restaurants=Restaurant.all
+            id= params[:id]
+            @user = User.find_by(id: params[:user_id])
+            @restaurants= @user.restaurants
+            # @restaurants=Restaurant.where(user_id: @user.id)
+            # @restaurants=Restaurant.where(user_id: params[:id])
+
+            @restaurant = Restaurant.new
+            render "index"
+        else
+            @restaurants=Restaurant.where(user_id: current_user.id)
+            @restaurant = Restaurant.new
+            render "index"
+        end
     end
     
     def show
         id= params[:id]
         @restaurant=Restaurant.find(params[:id])
-        render "restaurant"
+        if current_user.role_id == 2
+            render "restaurant"
+        elsif current_user.role_id == 4
+            render "restaurant_admin"
+        else
+        
+        end
     end
 
     def create      
@@ -46,9 +65,16 @@ class RestaurantsController <ApplicationController
     end
 
     def destroy
+        id= params[:id]
+        @user = User.find_by(id: params[:user_id])
         Restaurant.find(params[:id]).destroy
         flash[:success] = "Restaurant deleted"
-        redirect_to restaurants_path
+        if current_user.role_id == 2
+            redirect_to restaurants_path
+        elsif current_user.role_id == 4         
+            redirect_to users_path
+        else
+        end
     end
 
     # def hellow

@@ -7,18 +7,19 @@
                     <div class="card" style="width:500px; background-color:lightblue;">
                         <div style="margin:10px;">
                             <div>
+                             <p><strong> Restaurant Type: </strong> </p>
                             <%= form.select :veg_restaurant, [["Veg Restaurant", true], ["Non Veg Restaurant", false]] %>
                             </div>
                             <div class="flex1">
-                                <p>Restaurant Name: </p>
+                                <p><strong> Restaurant Name: </strong> </p>
                                     <%= form.text_field :restaurant_name  %>
-                                <p> Restaurant Address: </p>
+                                <p> <strong> Restaurant Address: </strong> </p>
                                     <%= form.text_field :address  %>
                             </div>
                             <div class="flex2">
-                                <p> Opening time </p>
+                                <p><strong> Opening time  </strong></p>
                                     <%= form.time_field :opening_time  %>
-                                <p> closing time </p>
+                                <p> <strong> closing time  </strong></p>
                                     <%= form.time_field :closing_time  %>
                             </div> 
                             <div class="Form-section">

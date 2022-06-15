@@ -1,12 +1,23 @@
 <main class="ResturantPageMain">
     <div style="padding-top:50px;">
         <article class="article1" >
+        <% if current_user.role_id == 2 %>
+            <h1 style="text-align:center; background-color:#b4f896; margin-bottom: 25px;height:50px; color:#ea0f0f;"> <strong>  WELCOME RESTAURANT USER  </strong></h1>
+        <% end %>
         <div style="display:flex;margin-left:10px;">
-            <div>                           
+            <div>        
+            <% if current_user.role_id == 2 %>                   
                  <%= render partial: "form1-section" %>
+            <% end %>
             </div>
             <div>
+            <% if current_user.role_id == 2 %>
                 <%= render partial: "restaurant-section" %>
+            <% elsif current_user.role_id == 4 %>
+                <%= render partial: "admin-restaurant-section" %>
+            <% else %>
+              <%#>  <%= render partial: "restaurant-section" %>
+            <% end %>
             </div>
         </div>
         </article>

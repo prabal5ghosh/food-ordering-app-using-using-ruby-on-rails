@@ -4,7 +4,7 @@ class SessionsController < ApplicationController
   def new
     render "new"
   end
-  
+ 
   def create
     user = User.find_by_email(params[:email])
     if user && user.authenticate(params[:password])
@@ -13,6 +13,8 @@ class SessionsController < ApplicationController
         redirect_to restaurants_path
       elsif user.role_id == 3
         redirect_to '/users/{user.id}'
+      elsif user.role_id == 4
+        redirect_to users_path
       else
         redirect_to '/'
       end
@@ -23,9 +25,11 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    session[:current_user_id] = nil
-    @current_user = nil
-  redirect_to "/"
+    # if current_user.role_id != 4
+      session[:current_user_id] = nil
+      @current_user = nil
+      redirect_to "/"
+    # end
   end
 
 end

@@ -11,8 +11,10 @@
         <%= render partial: "fooditem1", collection: @fooditems, as: :d %>
         <br>
         <div>
-          <% if @restaurant %>  
-            <%= link_to "new fooditem", new_restaurant_fooditem_path %>
+          <% if @restaurant %> 
+            <% if current_user.role_id == 2 %> 
+              <%= link_to "new fooditem", new_restaurant_fooditem_path %>
+            <% end %>
             <%= button_to "back", "/restaurants/#{@restaurant.id}" , method: "get" , style:"color:#ff00de ;font-weight: bold;background-color: #00ffbb;margin-left:300px;", class:"btn btn-warning"%> 
           <% else %>
             <%= link_to "new fooditem", new_fooditem_path %>
@@ -20,11 +22,20 @@
         </div>                
       </div>
       <div>
+      <% if current_user.role_id == 2 %>
         <%= render partial: "form2-section" %>
+      <% end %>
       </div>
     </div>
     <div>
-        <%= render partial: "fooditem-section" %>
+    <% if current_user.role_id == 2 %>
+      <%= render partial: "fooditem-section" %>
+    <% elsif current_user.role_id == 4 %>
+      <%= render partial: "adminfood-section" %>
+    <% else %>
+    
+    <% end %>
+
     </div>
   </div>
  </main>

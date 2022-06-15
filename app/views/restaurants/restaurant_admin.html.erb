@@ -38,7 +38,7 @@
             <th> closing_time</th>
             <th class="bg-info"> <strong> View foods_restaurant: </strong> </th>
             <th class="bg-success"> edit</th>
-            <th class="p-3 mb-2 bg-danger text-white">delete </th>
+            <th class="p-3 mb-2 bg-danger text-white">delete </th> 
           </tr>
         </thead>
         <tbody>
@@ -55,12 +55,13 @@
               <td class="border border-light"> <%= @restaurant.opening_time %> </td>
               <td class="border border-warning"> <%= @restaurant.closing_time %> </td>
               <td class="text-center"> 
-                <%= button_to "View", "/restaurants/#{@restaurant.id}/fooditems" , method: "get", style:"color:#ff00de ;font-weight: bold;background-color: #f4f1b1; " ,class:"btn btn-danger"%>     
+        <%#>        <%= button_to "View", user_restaurant_fooditems_path , method: "get", style:"color:#ff00de ;font-weight: bold;background-color: #f4f1b1; " ,class:"btn btn-danger"%>     
+                    <%= button_to "View", "/users/#{@restaurant.user_id}/restaurants/#{@restaurant.id}/fooditems" , method: "get", style:"color:#ff00de ;font-weight: bold;background-color: #f4f1b1; " ,class:"btn btn-danger"%>     
               </td>
               <td class="border border-primary"><%= link_to 'Edit', edit_restaurant_path(@restaurant) %>   </td>
               <td class="border border-danger">
                 <a class="TodoItem-delete"  href="javascript:void(0)">
-                  <%= form_with(url: "/restaurants/#{@restaurant.id}", method: "delete") do %>                               
+                  <%= form_with(url: "/users/#{@restaurant.user_id}/restaurants/#{@restaurant.id}", method: "delete") do %>                               
                     <button class="btn btn-danger" type="submit">Delete</button>
                   <% end %>
                 </a>
@@ -69,14 +70,18 @@
         </tbody>
         </table>
     </div>
-      <div style="padding:20px;margin-left: 650px; margin-right: 700px; background-color: #f29898; margin-top:50px">     
-        <p style="display: block;"> <strong style="background-color:yellow;"> to find food items of  this restaurant</strong>
-        <div style="margin-left:50px">
-          <%= form_with(url: "/restaurants/#{@restaurant.id}/fooditems", method: "get") do %>   
-            <button class="btn btn-success" type="submit">View_food_items</button>
-          <% end %>
-        </div>  
-        </p>   
-      </div>    
+    <div style="padding:20px;margin-left: 650px; margin-right: 700px; background-color: #f29898; margin-top:50px">
+      <p style="display: block;"> <strong style="background-color:yellow;"> to find food items of  this restaurant</strong>
+      <div style="margin-left:50px">
+        <%= form_with(url: "/restaurants/#{@restaurant.id}/fooditems", method: "get") do %>                 
+          <button class="btn btn-success" type="submit">View_food_items</button>
+        <% end %>
+      </div>  
+      </p>   
+    </div>
+    <div>
+        <%= link_to 'back', user_restaurants_path %>
+
+    </div>
   </body>
 </html>

@@ -19,7 +19,7 @@
                         <th class="bg-warning"> <strong>catagory</strong></th>
                         <th class="bg-info" >  <strong>restaurant name</strong> </th>
                         <th class="bg-danger"> <strong> View foods_restaurant: </strong> </th>
-                   <%#>     <th class="p-3 mb-2 bg-danger text-white">delete </th>   %>
+                       <%#> <th class="p-3 mb-2 bg-danger text-white">delete </th> %>
                     </tr>
                 </thead>
                 <tbody>
@@ -49,12 +49,15 @@
                                 <%= Restaurant.find_by(id:@restaurant.id).restaurant_name %>
                             </td>
                             <td class="text-center"> 
-                                <%= button_to "View", "/restaurants/#{@restaurant.id}/fooditems/#{fooditem.id}" , method: "get", style:"color:#ff00de ;font-weight: bold;background-color: #f4f1b1; " ,class:"btn btn-danger"%>
+                                <%= button_to "View", "/users/#{@restaurant.user_id}/restaurants/#{@restaurant.id}/fooditems/#{fooditem.id}" , method: "get", style:"color:#ff00de ;font-weight: bold;background-color: #f4f1b1; " ,class:"btn btn-danger"%>
                             </td>
                         </tr>
                     <% end %>
                 </tbody>
             </table>
         </div>
+        <div class="text-center">
+            <p> <strong> <%= link_to 'Back', user_restaurants_path %> </strong> <p>
+        <div>
     </body>
 </html>
