@@ -1,6 +1,8 @@
 <h1 style="text-align: center; color: #aaf079; padding-top:30px;"> fooditem:-  <%= @fooditem.food_name %> </h1>
 <%= render partial: "fooditem1", locals: {d: @fooditem} %>
-<%= button_to "back", restaurant_fooditems_path , method: "get" , style:"color:#ff00de ;font-weight: bold;background-color: #00ffbb;margin-left:140px;", class:"btn btn-warning"%> 
+<% if current_user.role_id != 4 %>
+  <%= button_to "back", restaurant_fooditems_path , method: "get" , style:"color:#ff00de ;font-weight: bold;background-color: #00ffbb;margin-left:140px;", class:"btn btn-warning"%> 
+<% end %>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -24,15 +26,19 @@
                   <% end %></p>
               <p><strong> Fooditem id: </strong><%= @fooditem.id %></p>
               <div style=";">
+              <% if current_user.role_id != 4 %>
                   <%= button_to "back to all FOODITEM LIST", restaurant_fooditems_path , method: "get" , style:"color:#ff00de ;font-weight: bold;background-color: #00ffbb;margin-left:40px; margin-bottom:20px;", class:"btn btn-warning"%> 
                   <%= button_to "back to all restaurant list", restaurants_path , method: "get" , style:"color:#ff00de ;font-weight: bold;background-color: #efb8b8; margin-left:40px;", class:"btn btn-warning"%> 
+              <% end %>
               </div>
             </div>
           </div>  
           <div  style="text-align: center; background-color:#fdf628; width:400px;align-content: center; padding: 10px; width:300px; height:150px" >        
               <p style="background-color:#41ed46; color:red;">Resturant name:  <strong> <%= Restaurant.find_by(id: (Fooditem.find(@fooditem.id).restaurant_id)).restaurant_name %> </strong></p>
               <p style=" color:red;">Resturant ID:  <strong> <%= Restaurant.find_by(id: (Fooditem.find(@fooditem.id).restaurant_id)).id%> </strong></p>
-              <%= button_to "back to all restaurant list", restaurants_path , method: "get" , style:"color:#ff00de ;font-weight: bold;background-color: #efb8b8; margin-left:30px;", class:"btn btn-warning"%> 
+              <% if current_user.role_id != 4 %>
+                <%= button_to "back to all restaurant list", restaurants_path , method: "get" , style:"color:#ff00de ;font-weight: bold;background-color: #efb8b8; margin-left:30px;", class:"btn btn-warning"%> 
+              <% end %>
               <%= render partial: "fooditem1", collection: @fooditems, as: :d %>
               <br>   
           </div>   
@@ -68,7 +74,12 @@
               <%= Restaurant.find_by(id: (Fooditem.find(@fooditem.id).restaurant_id)).restaurant_name %>
             </td>
             <td class="border border-primary">  
+            <% if current_user.role_id == 2 %>
               <%= link_to 'Edit', edit_restaurant_fooditem_path(@fooditem.restaurant_id) %>  
+            <% elsif current_user.role_id== 4 %>
+                 <%= link_to 'Edit', "/users/#{@restaurant.user_id}/restaurants/#{@fooditem.restaurant_id}/fooditems/#{@fooditem.id}/edit" %>
+            <% else %>
+            <% end %>
             </td>
             <td class="border border-danger">
             <% if current_user.role_id ==2 %>
@@ -76,9 +87,9 @@
             <% elsif current_user.role_id ==4 %>
           <%#>    <%= button_to "Delete", user_restaurant_fooditems_path, method: 'delete' %>
                  <a class="TodoItem-delete"  href="javascript:void(0)">
-                  <%= form_with(url: "/users/#{@fooditem.restaurant_id}/restaurants/#{@fooditem.restaurant_id}/fooditems/#{@fooditem.id}", method: "delete") do %>                               
-                    <button class="btn btn-danger" type="submit">Delete</button>
-                  <% end %>
+                    <%= form_with(url: "/users/#{@restaurant.user_id}/restaurants/#{@fooditem.restaurant_id}/fooditems/#{@fooditem.id}", method: "delete") do %>                               
+                      <button class="btn btn-danger" type="submit">Delete</button>
+                    <% end %>
                 </a>
             <% end %>
             </td>
@@ -88,7 +99,12 @@
       </table>
       </div>
       <div class="text-center">
-        <p> <strong> <%= link_to 'Back', :back %> </strong> <p>
+      <% if current_user.role_id == 4 %>
+         <%= button_to "back", user_restaurant_fooditems_path , method: "get" , style:"color:#ff00de ;font-weight: bold;background-color: #00ffbb;margin-left:140px;", class:"btn btn-warning"%> 
+      <% elsif current_user.role_id == 2 %>
+                 <%= button_to "back", restaurant_fooditems_path , method: "get" , style:"color:#ff00de ;font-weight: bold;background-color: #00ffbb;margin-left:140px;", class:"btn btn-warning"%> 
+      <% else %>
+      <% end %>
       <div>
   </body>
 </html>

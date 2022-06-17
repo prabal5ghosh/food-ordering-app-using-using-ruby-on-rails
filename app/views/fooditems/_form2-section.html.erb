@@ -4,7 +4,9 @@
         <% if @restaurant %>                 
             <%= link_to "new fooditem", new_restaurant_fooditem_path, style:"margin-left:140px;"%>
             <%= button_to "ADD NEW FOODITEM", new_restaurant_fooditem_path , method: "get" , style:"margin-top:80px; color:red ;font-weight: bold;background-color: #00ffbb;margin-left:100px;", class:"btn btn-warning"%> 
+          <% if current_user.role_id != 4 %>
             <%= button_to "back", "/restaurants/#{@restaurant.id}" , method: "get" , style:"color:#ff00de ;font-weight: bold;background-color: green;margin-left:300px;margin-top:140px", class:"btn btn-warning"%> 
+          <% end %>
         <% else %>
             <%= link_to "new fooditem", new_fooditem_path %>
         <% end %>

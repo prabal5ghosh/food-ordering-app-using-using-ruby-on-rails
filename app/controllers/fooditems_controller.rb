@@ -37,24 +37,58 @@ class FooditemsController < ApplicationController
     end
 
     def show
-        id= params[:id]
-        @fooditem=Fooditem.find(params[:id])
-        render "show"
+        if current_user.role_id == 2
+            @restaurant = Restaurant.find_by(id: params[:restaurant_id])
+            id= params[:id]
+            @fooditem=Fooditem.find(params[:id])
+            render "show"
+        elsif current_user.role_id == 4
+            @user = User.find_by(id: Restaurant.find_by(id: Fooditem.find(params[:id]).restaurant_id).user_id)
+            @restaurant = Restaurant.find_by(id: params[:restaurant_id])
+            id= params[:id]
+            @fooditem=Fooditem.find(params[:id])
+            render "show"
+        else
+        end
+        
+        
     end
 
     def edit
-        @restaurant = Restaurant.find_by(id: params[:restaurant_id])
-        id= params[:id]
-        @fooditem=Fooditem.find(params[:id])
+        if current_user.role_id == 2
+            @restaurant = Restaurant.find_by(id: params[:restaurant_id])
+            id= params[:id]
+            @fooditem=Fooditem.find(params[:id])
+        elsif current_user.role_id == 4
+            @user = User.find_by(id: Restaurant.find_by(id: Fooditem.find(params[:id]).restaurant_id).user_id)
+            @restaurant = Restaurant.find_by(id: params[:restaurant_id])
+            id= params[:id]
+            @fooditem=Fooditem.find(params[:id])
+        else
+        end
     end
 
     def update
-        @restaurant = Restaurant.find_by(id: params[:restaurant_id])
-        @fooditem=Fooditem.find(params[:id])
-        if @fooditem.update(fooditem_params)
-            redirect_to  restaurant_fooditem_path(@fooditem.restaurant_id)
-        else 
-            render 'edit'
+        if current_user.role_id == 2
+            @restaurant = Restaurant.find_by(id: params[:restaurant_id])
+            @fooditem=Fooditem.find(params[:id])
+            if @fooditem.update(fooditem_params)
+                redirect_to  restaurant_fooditem_path(@fooditem.restaurant_id)
+            else 
+                render 'edit'
+            end
+        elsif current_user.role_id == 4
+            @user = User.find_by(id: Restaurant.find_by(id: Fooditem.find(params[:id]).restaurant_id).user_id)
+            @restaurant = Restaurant.find_by(id: params[:restaurant_id])
+            id= params[:id]
+            @fooditem=Fooditem.find(params[:id])
+            if @fooditem.update(fooditem_params)
+                # redirect_to  user_restaurant_fooditem_path
+                redirect_to  user_restaurant_fooditems_path
+            else 
+                render 'edit'
+            end
+        else
         end
     end
 

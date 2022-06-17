@@ -31,17 +31,9 @@
               <td> <%= @user.email %> </td>
               <td> <%= @user.role_id %> </td>
               <td>
-             <%#>   <% if Restaurant.find_by(user_id: User.find_by(id: params[:id])).id %>
-              <%#>  <%= Restaurant.find_by(user_id: User.find_by(id: params[:id])).id %>
-       <%#>       has restaurant
-                <% else %>
-        <%#>        no restaurant
-                <% end %>
-                <%= button_to "View", "/users/#{@user.id}/restaurants"	 , method: "get", style:"color:#ff00de ;font-weight: bold;background-color: #f4f1b1; " ,class:"btn btn-danger"%>     
-              
+                <%= button_to "View", "/users/#{@user.id}/restaurants"	 , method: "get", style:"color:#ff00de ;font-weight: bold;background-color: #f4f1b1; " ,class:"btn btn-danger"%>                  
               </td>
-              <td>
-              
+              <td>             
                 <a class="TodoItem-delete"  href="javascript:void(0)">
                   <%= form_with(url: "/users/#{@user.id}", method: "delete") do %>                               
                     <button class="btn btn-danger" type="submit">Delete</button>

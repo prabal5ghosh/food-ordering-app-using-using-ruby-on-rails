@@ -58,7 +58,15 @@
         <%#>        <%= button_to "View", user_restaurant_fooditems_path , method: "get", style:"color:#ff00de ;font-weight: bold;background-color: #f4f1b1; " ,class:"btn btn-danger"%>     
                     <%= button_to "View", "/users/#{@restaurant.user_id}/restaurants/#{@restaurant.id}/fooditems" , method: "get", style:"color:#ff00de ;font-weight: bold;background-color: #f4f1b1; " ,class:"btn btn-danger"%>     
               </td>
-              <td class="border border-primary"><%= link_to 'Edit', edit_restaurant_path(@restaurant) %>   </td>
+              <td class="border border-primary">
+                  <% if current_user.role_id == 2 %>
+                    <%= link_to 'Edit', edit_restaurant_path(@restaurant) %>  
+                  <% elsif current_user.role_id == 4 %> 
+                    <%= link_to 'Edit', "/users/#{@restaurant.user_id}/restaurants/#{@restaurant.id}/edit" %>
+                  <% else %>
+                  <% end %>
+
+              </td>
               <td class="border border-danger">
                 <a class="TodoItem-delete"  href="javascript:void(0)">
                   <%= form_with(url: "/users/#{@restaurant.user_id}/restaurants/#{@restaurant.id}", method: "delete") do %>                               
@@ -80,7 +88,9 @@
       </p>   
     </div>
     <div>
-        <%= link_to 'back', user_restaurants_path %>
+   <%#>     <%= link_to 'back', :back %>
+         <%= button_to "back", user_restaurants_path , method: "get" , style:"color:#ff00de ;font-weight: bold;background-color: #00ffbb;margin-left:140px;", class:"btn btn-warning"%> 
+
 
     </div>
   </body>

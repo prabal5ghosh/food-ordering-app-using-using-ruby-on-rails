@@ -1,32 +1,69 @@
 <main>
-  <%= button_to "back", restaurant_fooditem_path , method: "get" , style:"color:#ff00de ;font-weight: bold;background-color: #00ffbb;margin-left:140px;", class:"btn btn-warning"%> 
+  <% if current_user.role_id != 4 %>
+    <%= button_to "back", restaurant_fooditem_path , method: "get" , style:"color:#ff00de ;font-weight: bold;background-color: #00ffbb;margin-left:140px;", class:"btn btn-warning"%> 
+  <% elsif current_user.role_id == 4 %>
+      <%= button_to "back", user_restaurant_fooditem_path , method: "get" , style:"color:#ff00de ;font-weight: bold;background-color: #00ffbb;margin-left:140px;", class:"btn btn-warning"%> 
+  <% else %>
+  <% end %>
   <div style="width: 500px; position: absolute;top: 50%;left: 30%;transform: translate(-50%,-50%); height:450px; margin-left: 300px; padding:40px; background-color: #f289d3;" >
     <h3> EDIT THE FOOD ITEM </h3>
-    <%= form_for [@restaurant, @fooditem] do |f| %>
-        <div class="field"> 
-          <div class="mb-3">
-            <strong>    <%= f.label :food_name, { class: "form-label"} %> </strong>
-            <%= f.text_field :food_name, { class: "form-control", placeholder: "Food Name" } %>
+    <% if current_user.role_id == 2 %>
+      <%= form_for [@restaurant, @fooditem] do |f| %>
+          <div class="field"> 
+            <div class="mb-3">
+              <strong>    <%= f.label :food_name, { class: "form-label"} %> </strong>
+              <%= f.text_field :food_name, { class: "form-control", placeholder: "Food Name" } %>
+            </div>
+            <div class="mb-3">
+              <strong>   <%= f.label :price, { class: "form-label"} %>   </strong>
+              <%= f.number_field :price, { class: "form-control", placeholder: "price" } %>
+            </div>
+            <div>
+              <p Class="FormInput-label-1"> <strong> Veg or NonVeg Food Item:  </strong></p> 
+              <%= f.select :veg_food, [["Veg FOOD", true], ["Non Veg FOOD", false]] %>
+            </div>
+            <div>
+              <p Class="FormInput-label-1">  <strong> Category of Food Item:  </strong></p> 
+              <%= f.collection_select :category_id, Category.all, :id, :catagory_name %>
+            </div>       
           </div>
-          <div class="mb-3">
-            <strong>   <%= f.label :price, { class: "form-label"} %>   </strong>
-            <%= f.number_field :price, { class: "form-control", placeholder: "price" } %>
+          <div class="actions">
+            <%= f.submit "Create" %>
+          </div> 
+          <div style="display: flex; margin-top:20px;">
+              <%= button_to "ADD", restaurant_fooditems_url(@fooditem.restaurant_id) , method: "post" , style:"color:#ff00de ;font-weight: bold;background-color: #00ffbb;margin-left:140px;", class:"btn btn-warning"%> 
+          </div>  
+      <% end %>
+    <% elsif current_user.role_id == 4 %>
+      <%= form_for [@user,@restaurant, @fooditem] do |f| %>
+          <div class="field"> 
+            <div class="mb-3">
+              <strong>    <%= f.label :food_name, { class: "form-label"} %> </strong>
+              <%= f.text_field :food_name, { class: "form-control", placeholder: "Food Name" } %>
+            </div>
+            <div class="mb-3">
+              <strong>   <%= f.label :price, { class: "form-label"} %>   </strong>
+              <%= f.number_field :price, { class: "form-control", placeholder: "price" } %>
+            </div>
+            <div>
+              <p Class="FormInput-label-1"> <strong> Veg or NonVeg Food Item:  </strong></p> 
+              <%= f.select :veg_food, [["Veg FOOD", true], ["Non Veg FOOD", false]] %>
+            </div>
+            <div>
+              <p Class="FormInput-label-1">  <strong> Category of Food Item:  </strong></p> 
+              <%= f.collection_select :category_id, Category.all, :id, :catagory_name %>
+            </div>       
           </div>
-          <div>
-            <p Class="FormInput-label-1"> <strong> Veg or NonVeg Food Item:  </strong></p> 
-            <%= f.select :veg_food, [["Veg FOOD", true], ["Non Veg FOOD", false]] %>
-          </div>
-          <div>
-            <p Class="FormInput-label-1">  <strong> Category of Food Item:  </strong></p> 
-            <%= f.collection_select :category_id, Category.all, :id, :catagory_name %>
-          </div>       
-        </div>
-        <div class="actions">
-          <%= f.submit "Create" %>
-        </div> 
-        <div style="display: flex; margin-top:20px;">
-            <%= button_to "ADD", restaurant_fooditems_url(@fooditem.restaurant_id) , method: "post" , style:"color:#ff00de ;font-weight: bold;background-color: #00ffbb;margin-left:140px;", class:"btn btn-warning"%> 
-        </div>  
+          <div class="actions">
+            <%= f.submit "Create" %>
+          </div> 
+          <div style="display: flex; margin-top:20px;">
+              <%= button_to "ADD", restaurant_fooditems_url(@fooditem.restaurant_id) , method: "post" , style:"color:#ff00de ;font-weight: bold;background-color: #00ffbb;margin-left:140px;", class:"btn btn-warning"%> 
+          </div>  
+      <% end %>
+    <% else %>
     <% end %>
+
+
   </div>
 </main>

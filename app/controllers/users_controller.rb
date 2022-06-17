@@ -6,11 +6,9 @@ class UsersController < ApplicationController
     end
     def index
         if current_user.role_id ==4
-            # @users=Restaurant.all
-            # @user = Restaurant.new
             @users=User.all
             @user = User.new
-            render "index"
+            render "index" 
         end
     end
 

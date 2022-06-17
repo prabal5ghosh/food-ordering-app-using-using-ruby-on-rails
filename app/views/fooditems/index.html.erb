@@ -14,8 +14,8 @@
           <% if @restaurant %> 
             <% if current_user.role_id == 2 %> 
               <%= link_to "new fooditem", new_restaurant_fooditem_path %>
+              <%= button_to "back", "/restaurants/#{@restaurant.id}" , method: "get" , style:"color:#ff00de ;font-weight: bold;background-color: #00ffbb;margin-left:300px;", class:"btn btn-warning"%> 
             <% end %>
-            <%= button_to "back", "/restaurants/#{@restaurant.id}" , method: "get" , style:"color:#ff00de ;font-weight: bold;background-color: #00ffbb;margin-left:300px;", class:"btn btn-warning"%> 
           <% else %>
             <%= link_to "new fooditem", new_fooditem_path %>
           <% end %>

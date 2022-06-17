@@ -8,7 +8,7 @@ class RestaurantsController <ApplicationController
     end
 
     def index
-        if current_user.role_id ==4
+        if current_user.role_id == 4
             # @restaurants=Restaurant.all
             id= params[:id]
             @user = User.find_by(id: params[:user_id])
@@ -49,15 +49,26 @@ class RestaurantsController <ApplicationController
     end
     
     def edit
-        # id = params[:id]
-        @restaurant=Restaurant.find(params[:id])
+        if current_user.role_id == 2
+            # id = params[:id]
+            @restaurant=Restaurant.find(params[:id])
+        elsif current_user.role_id == 4
+            @user = User.find_by(id: params[:user_id])
+            id= params[:id]
+            @restaurant=Restaurant.find(params[:id])
+        end
+        
     end
 
     def update
         @restaurant=Restaurant.find(params[:id])
         if @restaurant.update(restaurant_params)
             # restaurant.save!
-            redirect_to @restaurant
+            if current_user.role_id == 2
+                redirect_to @restaurant
+            elsif current_user.role_id == 4
+                redirect_to user_restaurants_path
+            end
         else 
             flash[:error]= @restaurant.errors.full_messages.join(", ")
             render 'edit'

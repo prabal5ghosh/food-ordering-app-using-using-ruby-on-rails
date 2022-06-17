@@ -30,7 +30,10 @@
               <td> <%= user.first_name %> </td>
               <td> <%= user.last_name %> </td>
               <td> <%= user.email %> </td>
-              <td> <%= user.role_id %> </td>
+              <td>
+              <%#>  <%= @role.role_type %>
+                <%= Role.find_by(id: user.role_id).role_type %>
+              </td>
               <td>
              <%#>   Restaurant.find_by(user_id: User.find_by(id: 13))   %>
                       <%#>     <%= button_to "View", 'user_path' , method: "get", style:"color:#ff00de ;font-weight: bold;background-color: #f4f1b1; " ,class:"btn btn-danger"%>     
