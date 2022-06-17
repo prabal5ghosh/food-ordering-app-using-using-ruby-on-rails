@@ -92,7 +92,6 @@ class RestaurantsController <ApplicationController
     #     # @restaurant=Restaurant.find(params[:id])
     # render '/fooditems/index'
     # end
-
     private
     def restaurant_params   
         params.require(:restaurant).permit(:veg_restaurant, :restaurant_name, :address, :opening_time, :closing_time)    

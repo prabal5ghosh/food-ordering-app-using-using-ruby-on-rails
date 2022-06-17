@@ -19,9 +19,8 @@
           <% end %></p>
       <p><strong> Resturant id: </strong><%= @restaurant.id %></p>
       <div style="display: flex;">
-       <% if current_user.role_id == 4 %>
+      <% if current_user.role_id == 4 %>
          <%#>       <%= button_to "back", user_restaurants_path , method: "get" , style:"color:#ff00de ;font-weight: bold;background-color: #00ffbb;margin-left:140px;", class:"btn btn-warning"%> 
-
       <% else %>
                 <%= button_to "back", restaurants_path , method: "get" , style:"color:#ff00de ;font-weight: bold;background-color: #00ffbb;margin-left:140px;", class:"btn btn-warning"%> 
       <% end %>
